@@ -55,6 +55,7 @@ class LoginScreen extends StatelessWidget {
             Controller: phoneController,
             save: false,
             Label: 'رقم الهاتف',
+            writeType: TextInputType.phone,
           ),
           SizedBox(
             height: 20.h,
@@ -111,7 +112,8 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -128,27 +130,27 @@ class LoginScreen extends StatelessWidget {
 
     if (phone == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال الرقم'),
+        SnackBarComp().customSnackBar('الرجاء ادخال الرقم', Colors.red),
       );
       return;
     }else if (old == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال العمر'),
+        SnackBarComp().customSnackBar('الرجاء ادخال العمر', Colors.red),
       );
       return;
     }else if (password == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال كلمة السر'),
+        SnackBarComp().customSnackBar('الرجاء ادخال كلمة السر', Colors.red),
       );
       return;
     }
     
-    var response = await LoginRegisterRepo().login(email: phone, password: password, age: old);
+    var response = await LoginRegisterRepo().login(phone: phone, password: password, age: old);
 
     if(response.data!.token != null){
-      SharedPreferenceHelper.saveData(key: 'AuthResponse', value: loginRegisterResponseToJson(response));
+      SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!),
+        SnackBarComp().customSnackBar(response.message!, Colors.green),
       );
       Navigator.pushAndRemoveUntil(
         context,
@@ -161,7 +163,7 @@ class LoginScreen extends StatelessWidget {
     }
     else{
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!),
+        SnackBarComp().customSnackBar(response.message!, Colors.red),
       );
     }
   }

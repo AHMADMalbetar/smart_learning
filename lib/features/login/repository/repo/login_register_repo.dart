@@ -5,7 +5,7 @@ import '../model/login_register_response.dart';
 
 class LoginRegisterRepo {
   Future<LoginRegisterResponse> login({
-    required String email,
+    required String phone,
     required String password,
     required String age,
 }) async {
@@ -13,7 +13,7 @@ class LoginRegisterRepo {
     final response = await http.post(
       url,
       body: {
-        "email": email,
+        "phone": phone,
         "password": password,
         "age": age,
       },
@@ -26,17 +26,17 @@ class LoginRegisterRepo {
 
 
   Future<LoginRegisterResponse> register({
-    required String email,
+    required String phone,
     required String password,
     required String age,
     required String name,
 }) async {
-    var url = Uri.parse('${AppConfig.BASE_URL}/api/login');
+    var url = Uri.parse('${AppConfig.BASE_URL}/api/register');
     final response = await http.post(
       url,
       body: {
         "name": name,
-        "email": email,
+        "phone": phone,
         "password": password,
         "age": age,
       },

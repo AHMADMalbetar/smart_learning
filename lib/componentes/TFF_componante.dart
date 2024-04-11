@@ -12,6 +12,7 @@ Widget defTextFormField({
   Function()? onFiledSubmet,
   Function()? validate,
   Function()? ttfTap,
+  TextInputType? writeType,
   Color? defColor = Colors.teal,
 }) =>
     SizedBox(

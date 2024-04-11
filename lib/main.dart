@@ -21,7 +21,6 @@ class Main extends StatelessWidget {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
         return MaterialApp(
-          builder: OneContext().builder,
           debugShowCheckedModeBanner: false,
           home: child,
         );

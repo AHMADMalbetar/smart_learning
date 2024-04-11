@@ -101,6 +101,7 @@ class SignUpScreen extends StatelessWidget {
             Controller: phoneController,
             save: false,
             Label: 'رقم الهاتف',
+            writeType: TextInputType.phone,
           ),
           SizedBox(
             height: 15.h,
@@ -169,7 +170,8 @@ class SignUpScreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -187,34 +189,34 @@ class SignUpScreen extends StatelessWidget {
 
     if (name == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال الاسم'),
+        SnackBarComp().customSnackBar('الرجاء ادخال الاسم', Colors.red),
       );
       return;
     }
     else if (old == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال العمر'),
+        SnackBarComp().customSnackBar('الرجاء ادخال العمر', Colors.red),
       );
       return;
     }
     else if (phone == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال الرقم'),
+        SnackBarComp().customSnackBar('الرجاء ادخال الرقم', Colors.red),
       );
       return;
     }else if (password == "") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar('الرجاء ادخال كلمة السر'),
+        SnackBarComp().customSnackBar('الرجاء ادخال كلمة السر', Colors.red),
       );
       return;
     }
 
-    var response = await LoginRegisterRepo().register(email: phone, password: password, age: old, name: name);
+    var response = await LoginRegisterRepo().register(phone: phone, password: password, age: old, name: name);
 
     if(response.data!.token != null){
-      SharedPreferenceHelper.saveData(key: 'AuthResponse', value: loginRegisterResponseToJson(response));
+      SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!),
+        SnackBarComp().customSnackBar(response.message!, Colors.green),
       );
       Navigator.pushAndRemoveUntil(
         context,
@@ -227,7 +229,7 @@ class SignUpScreen extends StatelessWidget {
     }
     else{
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!),
+        SnackBarComp().customSnackBar(response.message!, Colors.red),
       );
     }
   }

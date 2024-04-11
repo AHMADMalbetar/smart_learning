@@ -5,7 +5,9 @@ import 'my_color.dart';
 
 class MyWidgets{
 
-  Widget buildBackGround(String title) {
+  Widget buildBackGround(String title, {
+    String? image,
+  }) {
     return Container(
       width: double.infinity.w,
       height: double.infinity.h,
@@ -18,7 +20,7 @@ class MyWidgets{
               width: 150.w,
               height: 150.h,
               child: Image.asset(
-                'assets/logo_splash_screen.png',
+                image ?? 'assets/logo_splash_screen.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -36,10 +38,12 @@ class MyWidgets{
   }
 
 
-  Widget buildLoginBody(String title, Widget body, double height) {
+  Widget buildLoginBody(String title, Widget body, double height, {
+    String? image,
+  }) {
     return Stack(
       children: [
-        buildBackGround(title),
+        buildBackGround(title, image: image),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(

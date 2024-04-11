@@ -15,8 +15,8 @@ class ExamType extends StatelessWidget {
   ];
 
   var screens = [
-    SmartLevelDocumentation(),
     DifficultLearningDocumentation(),
+    SmartLevelDocumentation(),
   ];
 
   @override

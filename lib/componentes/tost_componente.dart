@@ -6,9 +6,9 @@ import 'package:toast/toast.dart';
 import '../core/my_color.dart';
 
 class SnackBarComp {
-  SnackBar customSnackBar(message) {
+  SnackBar customSnackBar(message, color) {
     return SnackBar(
-      backgroundColor: Colors.red,
+      backgroundColor: color,
       content: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
