@@ -41,9 +41,12 @@ class _SmartLevelExamState extends State<SmartLevelExam> {
     return MyWidgets().buildLoginBody(exams.data![selectedExam].title!, buildGridBody(), 450.h, image: exams.data![selectedExam].img);
   }
 
-  // Widget buildGridBody() {
-  //   return
-  // }
+  Widget buildGridBody() {
+    return GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, index) => Container(),
+    );
+  }
 
 }
 
