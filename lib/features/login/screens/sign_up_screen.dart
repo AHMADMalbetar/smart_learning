@@ -10,7 +10,6 @@ import '../../../core/my_widgets.dart';
 import '../../../core/shared_prefereces.dart';
 import '../../choose_exam/screen/exam_type.dart';
 import '../cubit/login_cubit.dart';
-import '../repository/model/login_register_response.dart';
 import '../repository/repo/login_register_repo.dart';
 import 'login_screen.dart';
 
@@ -21,6 +20,10 @@ class SignUpScreen extends StatelessWidget {
   var oldController = TextEditingController();
   var phoneController = TextEditingController();
   var passwordController = TextEditingController();
+  FocusNode focusNode = FocusNode();
+  FocusNode focusNode1 = FocusNode();
+  FocusNode focusNode2 = FocusNode();
+  FocusNode focusNode3 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,16 @@ class SignUpScreen extends StatelessWidget {
             textDirection: TextDirection.rtl,
             child: SafeArea(
               child: Scaffold(
-                body: MyWidgets().buildLoginBody('اهلا بك', buildLogin(context), 460.h),
+                body: WillPopScope(
+                  onWillPop: () async {
+                    focusNode.unfocus();
+                    focusNode1.unfocus();
+                    focusNode2.unfocus();
+                    focusNode3.unfocus();
+                    return true;
+                  },
+                  child: MyWidgets().buildLoginBody('اهلا بك', buildLogin(context), 460.h, isFromNet: false),
+                ),
               ),
             ),
           );
@@ -63,9 +75,10 @@ class SignUpScreen extends StatelessWidget {
             Controller: nameController,
             save: false,
             Label: 'اسمي',
+            focusNode: focusNode,
           ),
           SizedBox(
-            height: 15.h,
+            height: 12.h,
           ),
           Text(
             'العمر: ',
@@ -82,9 +95,11 @@ class SignUpScreen extends StatelessWidget {
             Controller: oldController,
             save: false,
             Label: 'عمري',
+            focusNode: focusNode1,
+
           ),
           SizedBox(
-            height: 15.h,
+            height: 12.h,
           ),
           Text(
             'رقم الهاتف: ',
@@ -102,9 +117,11 @@ class SignUpScreen extends StatelessWidget {
             save: false,
             Label: 'رقم الهاتف',
             writeType: TextInputType.phone,
+            focusNode: focusNode2,
+
           ),
           SizedBox(
-            height: 15.h,
+            height: 12.h,
           ),
           Text(
             'كلمة السر: ',
@@ -121,6 +138,8 @@ class SignUpScreen extends StatelessWidget {
             Controller: passwordController,
             save: false,
             Label: 'كلمة السر',
+            focusNode: focusNode3,
+
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -135,11 +154,12 @@ class SignUpScreen extends StatelessWidget {
               ),
               TextButton(
                   onPressed: (){
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                          builder: (context) => LoginScreen(),
                         ),
+                            (route) => false,
                     );
                   },
                   child: Text(
@@ -154,7 +174,7 @@ class SignUpScreen extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20.h,
+            height: 10.h,
           ),
           InkWell(
             onTap: () => onPressSignUp(context),
@@ -215,6 +235,8 @@ class SignUpScreen extends StatelessWidget {
 
     if(response.data!.token != null){
       SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
+      SharedPreferenceHelper.saveData(key: 'age', value: response.data!.user!.age);
+      SharedPreferenceHelper.saveData(key: 'name', value: response.data!.user!.name);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBarComp().customSnackBar(response.message!, Colors.green),
       );

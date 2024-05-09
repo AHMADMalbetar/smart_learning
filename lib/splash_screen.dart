@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_animation_transition/animations/scale_animation_transition.dart';
 import 'package:smart_learning/core/shared_prefereces.dart';
-import 'package:smart_learning/features/login/repository/model/login_register_response.dart';
+import 'package:smart_learning/features/choose_exam/screen/exam_type.dart';
+import 'package:smart_learning/features/login/screens/login_screen.dart';
 import 'core/my_color.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
 
-import 'features/choose_exam/screen/exam_type.dart';
 import 'features/login/screens/sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,10 +23,12 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    var token = SharedPreferenceHelper.getData(key: 'token');
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushAndRemoveUntil(
           PageAnimationTransition(
-            page: SignUpScreen(),
+            //page: token.toString() != '' ? LoginScreen() : ExamType(),
+            page: ExamType(),
             pageAnimationType: ScaleAnimationTransition(),
           ), (route) => false);
     });

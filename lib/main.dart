@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:one_context/one_context.dart';
+import 'package:smart_learning/core/shared_prefereces.dart';
 import 'package:smart_learning/splash_screen.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferenceHelper.init();
   runApp(const Main());
 }
 

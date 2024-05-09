@@ -45,7 +45,7 @@ class SmartLevelDocumentation extends StatelessWidget {
 
   Widget buildDifficultBody(context) {
     return MyWidgets()
-        .buildLoginBody('الية تقديم الاختبار', buildDocumentation(context), 400.h);
+        .buildLoginBody('الية تقديم الاختبار', buildDocumentation(context), 400.h, isFromNet: false);
   }
 
   Widget buildDocumentation(context) {

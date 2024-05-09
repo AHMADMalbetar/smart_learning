@@ -48,6 +48,7 @@ dependencies:
   one_context: ^4.0.0
   shared_preferences: ^2.2.2
   http: ^1.2.1
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

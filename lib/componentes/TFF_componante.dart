@@ -12,15 +12,17 @@ Widget defTextFormField({
   Function()? onFiledSubmet,
   Function()? validate,
   Function()? ttfTap,
+  FocusNode? focusNode,
   TextInputType? writeType,
   Color? defColor = Colors.teal,
 }) =>
     SizedBox(
-      height: 40,
+      height: 40.h,
       child: TextFormField(
         onTap: ttfTap,
         obscureText: save,
         controller: Controller,
+        focusNode: focusNode,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.r),

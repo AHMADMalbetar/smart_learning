@@ -24,7 +24,7 @@ class ExamType extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: MyWidgets().buildLoginBody('اختر نوع الاختبار', buildExamType(), 350.h),
+        body: MyWidgets().buildLoginBody('اختر نوع الاختبار', buildExamType(), 350.h, isFromNet: false),
         endDrawer: Drawer(
           child: drawerBody(),
         ),

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_animation_transition/animations/right_to_left_faded_transition.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
-import 'package:smart_learning/componentes/TFF_componante.dart';
 import 'package:smart_learning/core/my_color.dart';
-import 'package:smart_learning/features/login/repository/model/login_register_response.dart';
 import 'package:smart_learning/features/login/repository/repo/login_register_repo.dart';
+import 'package:smart_learning/features/login/screens/sign_up_screen.dart';
 import '../../../componentes/tost_componente.dart';
 import '../../../core/my_widgets.dart';
 import '../../../core/shared_prefereces.dart';
@@ -18,6 +17,10 @@ class LoginScreen extends StatelessWidget {
   var phoneController = TextEditingController();
   var passwordController = TextEditingController();
 
+  FocusNode focusNode = FocusNode();
+  FocusNode focusNode1 = FocusNode();
+  FocusNode focusNode2 = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -27,8 +30,28 @@ class LoginScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: MyTheme.mainBackGroundColor,
             elevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, size: 25.sp, color: Colors.white,),
+              onPressed: (){
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUpScreen(),
+                    ),
+                        (route) => false,
+                );
+              },
+            ),
           ),
-          body: MyWidgets().buildLoginBody('اشتقنا اليك', buildLogin(context), 380.h),
+          body: WillPopScope(
+            onWillPop: () async {
+              focusNode.unfocus();
+              focusNode1.unfocus();
+              focusNode2.unfocus();
+              return true;
+            },
+            child: MyWidgets().buildLoginBody('اشتقنا اليك', buildLogin(context), 380.h, isFromNet: false),
+          ),
         ),
       ),
     );
@@ -49,16 +72,37 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: phoneController,
-            save: false,
-            Label: 'رقم الهاتف',
-            writeType: TextInputType.phone,
+            height: 5.h,
           ),
           SizedBox(
-            height: 20.h,
+            height: 40.h,
+            child: TextFormField(
+              focusNode: focusNode,
+              controller: phoneController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.r),
+                  borderSide: BorderSide(
+                    color: MyTheme.numColor,
+                  ),
+                ),
+                focusColor: MyTheme.numColor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: MyTheme.numColor,
+                  ),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                labelText: 'رقم الهاتف',
+                labelStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
           ),
           Text(
             'العمر : ',
@@ -69,15 +113,37 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: oldController,
-            save: false,
-            Label: 'العمر',
+            height: 5.h,
           ),
           SizedBox(
-            height: 20.h,
+            height: 40.h,
+            child: TextFormField(
+              focusNode: focusNode1,
+              controller: oldController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.r),
+                  borderSide: BorderSide(
+                    color: MyTheme.numColor,
+                  ),
+                ),
+                focusColor: MyTheme.numColor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: MyTheme.numColor,
+                  ),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                labelText: 'العمر',
+                labelStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
           ),
           Text(
             'كلمة السر: ',
@@ -88,15 +154,72 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: passwordController,
-            save: false,
-            Label: 'كلمة السر',
+            height: 5.h,
           ),
           SizedBox(
-            height: 50.h,
+            height: 40.h,
+            child: TextFormField(
+              focusNode: focusNode2,
+              controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.r),
+                  borderSide: BorderSide(
+                    color: MyTheme.numColor,
+                  ),
+                ),
+                focusColor: MyTheme.numColor,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: MyTheme.numColor,
+                  ),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                prefixIcon: Icon(
+                  Icons.lock_outline,
+                ),
+                labelText: 'كلمة السر',
+                labelStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'لديك حساب: ',
+                style: TextStyle(
+                    color: MyTheme.subTitleColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              TextButton(
+                onPressed: (){
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUpScreen(),
+                    ),
+                        (route) => false,
+                  );
+                },
+                child: Text(
+                  'انشئ حساب',
+                  style: TextStyle(
+                      color: MyTheme.numColor,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20.h,
           ),
           InkWell(
             onTap: () => onPressedLogin(context),
@@ -148,7 +271,11 @@ class LoginScreen extends StatelessWidget {
     var response = await LoginRegisterRepo().login(phone: phone, password: password, age: old);
 
     if(response.data!.token != null){
+      print(response.data!.token);
       SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
+      SharedPreferenceHelper.saveData(key: 'age', value: response.data!.user!.age);
+      SharedPreferenceHelper.saveData(key: 'name', value: response.data!.user!.name);
+      print(SharedPreferenceHelper.getData(key: 'token'));
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBarComp().customSnackBar(response.message!, Colors.green),
       );
