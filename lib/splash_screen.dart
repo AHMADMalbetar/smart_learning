@@ -21,17 +21,17 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
-    super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     var token = SharedPreferenceHelper.getData(key: 'token');
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushAndRemoveUntil(
           PageAnimationTransition(
-            //page: token.toString() != '' ? LoginScreen() : ExamType(),
-            page: ExamType(),
+            page: token.toString() != '' ? LoginScreen() : ExamType(),
+            //page: ExamType(),
             pageAnimationType: ScaleAnimationTransition(),
           ), (route) => false);
     });
+    super.initState();
   }
 
   @override

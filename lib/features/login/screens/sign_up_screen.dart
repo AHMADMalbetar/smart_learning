@@ -147,7 +147,7 @@ class SignUpScreen extends StatelessWidget {
               Text(
                 'لديك حساب: ',
                 style: TextStyle(
-                    color: MyTheme.subTitleColor,
+                    color: Colors.white,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold
                 ),
@@ -181,7 +181,7 @@ class SignUpScreen extends StatelessWidget {
             child: Container(
               height: 40.h,
               decoration: BoxDecoration(
-                color: MyTheme.mainBackGroundColor,
+                color: MyTheme.numColor,
                 borderRadius: BorderRadius.circular(15.r),
               ),
               child: Center(

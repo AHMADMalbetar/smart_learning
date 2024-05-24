@@ -31,6 +31,10 @@ class Data with _$Data {
     User? user,
     @JsonKey(name: "token")
     String? token,
+    @JsonKey(name: "IqQuiz")
+    bool? iqQuiz,
+    @JsonKey(name: "LearningQuiz")
+    bool? learningQuiz,
   }) = _Data;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
@@ -43,8 +47,8 @@ class User with _$User {
     int? id,
     @JsonKey(name: "name")
     String? name,
-    @JsonKey(name: "email")
-    String? email,
+    @JsonKey(name: "phone")
+    String? phone,
     @JsonKey(name: "age")
     int? age,
   }) = _User;

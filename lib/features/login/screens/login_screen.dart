@@ -95,9 +95,12 @@ class LoginScreen extends StatelessWidget {
                 ),
                 labelText: 'رقم الهاتف',
                 labelStyle: const TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white,
                   fontSize: 12,
                 ),
+              ),
+              style: const TextStyle(
+                color: Colors.white
               ),
             ),
           ),
@@ -118,6 +121,9 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: 40.h,
             child: TextFormField(
+              style: const TextStyle(
+                  color: Colors.white
+              ),
               focusNode: focusNode1,
               controller: oldController,
               decoration: InputDecoration(
@@ -136,7 +142,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 labelText: 'العمر',
                 labelStyle: const TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white,
                   fontSize: 12,
                 ),
               ),
@@ -159,6 +165,9 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: 40.h,
             child: TextFormField(
+              style: const TextStyle(
+                  color: Colors.white
+              ),
               focusNode: focusNode2,
               controller: passwordController,
               decoration: InputDecoration(
@@ -175,12 +184,12 @@ class LoginScreen extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(15.r),
                 ),
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.lock_outline,
                 ),
                 labelText: 'كلمة السر',
                 labelStyle: const TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white,
                   fontSize: 12,
                 ),
               ),
@@ -192,7 +201,7 @@ class LoginScreen extends StatelessWidget {
               Text(
                 'لديك حساب: ',
                 style: TextStyle(
-                    color: MyTheme.subTitleColor,
+                    color: Colors.white,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold
                 ),
@@ -226,7 +235,7 @@ class LoginScreen extends StatelessWidget {
             child: Container(
               height: 40.h,
               decoration: BoxDecoration(
-                color: MyTheme.mainBackGroundColor,
+                color: MyTheme.numColor,
                 borderRadius: BorderRadius.circular(15.r),
               ),
               child: Center(
@@ -267,14 +276,30 @@ class LoginScreen extends StatelessWidget {
       );
       return;
     }
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        child: SizedBox(
+          width: 50.w, height: 50.h,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: MyTheme.numColor,
+            ),
+          ),
+        ),
+      ),
+    );
     
     var response = await LoginRegisterRepo().login(phone: phone, password: password, age: old);
+    Navigator.pop(context);
 
-    if(response.data!.token != null){
+    if(response.message == 'login success'){
       print(response.data!.token);
       SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
       SharedPreferenceHelper.saveData(key: 'age', value: response.data!.user!.age);
       SharedPreferenceHelper.saveData(key: 'name', value: response.data!.user!.name);
+      SharedPreferenceHelper.saveData(key: 'smart_exam', value: response.data!.iqQuiz);
+      SharedPreferenceHelper.saveData(key: 'dif_exam', value: response.data!.learningQuiz);
       print(SharedPreferenceHelper.getData(key: 'token'));
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBarComp().customSnackBar(response.message!, Colors.green),

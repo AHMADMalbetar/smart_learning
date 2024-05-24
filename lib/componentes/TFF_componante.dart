@@ -47,9 +47,12 @@ Widget defTextFormField({
           ),
           labelText: Label,
           labelStyle: const TextStyle(
-            color: Colors.grey,
+            color: Colors.white,
             fontSize: 12,
           ),
+        ),
+        style: const TextStyle(
+            color: Colors.white
         ),
         onFieldSubmitted: (onFiledSubmet) {},
         validator: (validator){},

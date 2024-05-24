@@ -120,7 +120,7 @@ class _ResoltState extends State<Resolt> {
                 height: 40.h,
                 child: Center(
                   child: Text(
-                    'هيا لنبدا',
+                    'العودة',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

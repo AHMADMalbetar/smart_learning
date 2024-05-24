@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:smart_learning/generated/assets.dart';
 
 import 'my_color.dart';
 
@@ -21,13 +22,13 @@ class MyWidgets {
             SizedBox(
               width: 150.w,
               height: 150.h,
-              child: isFromNetWork
+              child: isFromNetWork == true
                   ? Image.network(
-                      image ?? 'assets/logo_splash_screen.png',
+                      image ?? Assets.assetsLogoSplashScreen,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
-                      image ?? 'assets/logo_splash_screen.png',
+                      image ?? Assets.assetsLogoSplashScreen,
                       fit: BoxFit.cover,
                     ),
             ),
@@ -53,7 +54,7 @@ class MyWidgets {
   }) {
     return Stack(
       children: [
-        buildBackGround(title, image: image, isFromNetWork: isFromNet!),
+        buildBackGround(title, image: image, isFromNetWork: isFromNet),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
@@ -77,7 +78,7 @@ class MyWidgets {
     return Text(
       note,
       style: TextStyle(
-          color: MyTheme.subTitleColor,
+          color: Colors.white,
           fontSize: 16.sp,
           fontWeight: FontWeight.bold),
       softWrap: true,

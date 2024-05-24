@@ -5,9 +5,9 @@ import 'package:smart_learning/core/shared_prefereces.dart';
 import 'package:smart_learning/splash_screen.dart';
 
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferenceHelper.init();
+  await SharedPreferenceHelper.init();
   runApp(const Main());
 }
 
