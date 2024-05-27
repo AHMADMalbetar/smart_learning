@@ -7,14 +7,27 @@ import '../../../core/helper_model/q_model.dart';
 import '../../../core/my_color.dart';
 import '../../../generated/assets.dart';
 
-class DifPExam extends StatefulWidget {
-  const DifPExam({super.key});
+class DifDExam extends StatefulWidget {
+  const DifDExam({super.key});
 
   @override
-  State<DifPExam> createState() => _DifExamState();
+  State<DifDExam> createState() => _DifExamState();
 }
 
-class _DifExamState extends State<DifPExam> {
+class _DifExamState extends State<DifDExam> {
+
+  int th = 4;
+  int the = 0;
+  int tm = 8;
+  int tme = 0;
+  int en = 1;
+  int ene = 0;
+  int ed = 5;
+  int ede = 0;
+  int eg = 1;
+  int ege = 0;
+  int et = 3;
+  int ete = 0;
 
   final AudioPlayer _audioPlayer = AudioPlayer();
 
@@ -37,41 +50,28 @@ class _DifExamState extends State<DifPExam> {
     super.initState();
   }
 
-  int th = 5;
-  int the = 0;
-  int tm = 7;
-  int tme = 0;
-  int en = 2;
-  int ene = 0;
-  int ed = 4;
-  int ede = 0;
-  int eg = 1;
-  int ege = 0;
-  int et = 3;
-  int ete = 0;
-
   int q = 0;
 
   List<String> audio = [
-    'audio/down/taa.aac',
-    'audio/down/5.aac',
+    'audio/up/doar.aac',
+    'audio/down/17.aac',
+    '',
+    '',
+    'audio/up/aad_kad.aac',
+    'audio/up/klb_kklb.aac',
+    'audio/up/hadika.aac',
+    'audio/down/bit_bitt.aac',
     '',
     '',
     '',
-    'audio/up/f.aac',
-    'audio/up/sam.aac',
+    '',
+    'audio/up/kra_kkra.aac',
+    'audio/up/aad_kad.aac',
+    'audio/down/tmr_kamar.aac',
     'audio/up/saaid_baaid.aac',
     '',
+    'audio/down/tiara.aac',
     '',
-    '',
-    '',
-    '',
-    Assets.upSam,
-    'audio/up/klm_kklm.aac',
-    'audio/up/kal_kkal.aac',
-    'audio/up/sam_kam.aac',
-    '',
-    'audio/down/ashjar.aac',
     '',
     '',
     '',
@@ -80,18 +80,17 @@ class _DifExamState extends State<DifPExam> {
   List<String> question = [
     'استمع جيدا ثم اعد ما سمعت',
     'استمع جيدا ثم اعد ما سمعت',
-    'اختر الصورة الثانية من اليمين',
-    'ما هو الحرف الذي عرض امامك',
-    'مالرقم الذي عرض امامك',
-    'استمع جيدا',
-    'استمع جيدا',
-    'استمع جيدا',
-    'اختر الشكل المختلف',
-    'اختر الشكل المختلف',
-    'اختر الشكل المختلف',
-    'اختر الشكل المختلف',
-    'ما هو لون الاسماك في الصورة',
-    'كم شمعة في الصورة',
+    'ما هو الشكل الذي عرض امامك',
+    'ما الكلمة التي عرضت امامك',
+    'هل الكلمتان متشابهتان',
+    'هل الكلمتان متشابهتان',
+    'هل الكلمتان متشابهتان',
+    'هل الكلمتان متشابهتان',
+    'اختر الشكل الصحيح',
+    'اختر الشكل الصحيح',
+    'اختر الشكل الصحيح',
+    'اختر الشكل الصحيح',
+    'اختر الكلمة المختلفة',
     'اختر الكلمة المختلفة',
     'اختر الكلمة المختلفة',
     'اختر الكلمة المختلفة',
@@ -105,22 +104,21 @@ class _DifExamState extends State<DifPExam> {
   List<String> questionImage = [
     '',
     '',
-    Assets.difImagesCards,
-    'ل',
-    '7',
+    Assets.difImagesStar,
+    Assets.difImagesCard1,
     '',
     '',
     '',
     '',
-    '',
-    '',
-    '',
-    Assets.difImagesQuation,
-    Assets.difImagesQuation,
-    '',
-    '',
-    '',
-    Assets.difImagesPolis,
+    Assets.difImagesIron1T,
+    Assets.difImagesTriangle4T,
+    Assets.difImagesAppel2T,
+    Assets.difImagesHorse1T,
+    'قرى',
+    'عاد',
+    'تمر',
+    'بعيد',
+    Assets.difImagesGirl,
     '',
     Assets.difImagesLionHorseSheep,
     Assets.difImagesAppleRoseInsect,
@@ -129,103 +127,83 @@ class _DifExamState extends State<DifPExam> {
 
   List<List<QModel>> answers = [
     [
-      QModel(answer: 'ت', isTrue: true),
-      QModel(answer: 'ر', isTrue: false),
-      QModel(answer: 'أ', isTrue: false),
-      QModel(answer: 'ي', isTrue: false),
+      QModel(answer: 'كتاب', isTrue: false),
+      QModel(answer: 'قلم', isTrue: false),
+      QModel(answer: 'سبورة', isTrue: false),
+      QModel(answer: 'باب', isTrue: true),
     ],
     [
-      QModel(answer: '15', isTrue: false),
       QModel(answer: '12', isTrue: false),
-      QModel(answer: '2', isTrue: false),
-      QModel(answer: '5', isTrue: true),
+      QModel(answer: '20', isTrue: false),
+      QModel(answer: '17', isTrue: true),
+      QModel(answer: '15', isTrue: false ),
     ],
     [
-      QModel(answer: Assets.difImagesBird, isTrue: false),
-      QModel(answer: Assets.difImagesTree, isTrue: true),
-      QModel(answer: Assets.difImagesStrwberry, isTrue: false),
-      QModel(answer: Assets.difImagesPen, isTrue: false),
+      QModel(answer: Assets.difImagesCloud, isTrue: false),
+      QModel(answer: Assets.difImagesRectangul, isTrue: false),
+      QModel(answer: Assets.difImagesStar, isTrue: true),
     ],
     [
-      QModel(answer: 'ل', isTrue: true),
-      QModel(answer: 'ع', isTrue: false),
-      QModel(answer: 'ض', isTrue: false),
-      QModel(answer: 'ث', isTrue: false),
+      QModel(answer: Assets.difImagesCard1, isTrue: true),
+      QModel(answer: Assets.difImagesCard2, isTrue: false),
+      QModel(answer: Assets.difImagesCard3, isTrue: false),
     ],
     [
-      QModel(answer: '7', isTrue: true),
-      QModel(answer: '5', isTrue: false),
-      QModel(answer: '9', isTrue: false),
-      QModel(answer: '2', isTrue: false),
+      QModel(answer: 'صح', isTrue: false),
+      QModel(answer: 'خطأ', isTrue: true),
+    ],[
+      QModel(answer: 'صح', isTrue: false),
+      QModel(answer: 'خطأ', isTrue: true),
+    ],[
+      QModel(answer: 'صح', isTrue: true),
+      QModel(answer: 'خطأ', isTrue: false),
+    ],[
+      QModel(answer: 'صح', isTrue: false),
+      QModel(answer: 'خطأ', isTrue: true),
     ],
     [
-      QModel(answer: 'ط', isTrue: false),
-      QModel(answer: 'ب', isTrue: false),
-      QModel(answer: 'ف', isTrue: true),
-      QModel(answer: 'ض', isTrue: false),
+      QModel(answer: Assets.difImagesIron1T, isTrue: true),
+      QModel(answer: Assets.difImagesIron2, isTrue: false),
+      QModel(answer: Assets.difImagesIron3, isTrue: false),
+      QModel(answer: Assets.difImagesIron4, isTrue: false),
     ],
     [
-      QModel(answer: 'قام', isTrue: false),
-      QModel(answer: 'صام', isTrue: true),
-      QModel(answer: 'نام', isTrue: false),
-      QModel(answer: 'مال', isTrue: false),
+      QModel(answer: Assets.difImagesTriangle, isTrue: true),
+      QModel(answer: Assets.difImagesTriangle2, isTrue: false),
+      QModel(answer: Assets.difImagesTriangle3, isTrue: false),
+      QModel(answer: Assets.difImagesTriangle1, isTrue: false),
     ],
     [
-      QModel(answer: 'بعيد', isTrue: false),
-      QModel(answer: 'سعيد', isTrue: true),
-      QModel(answer: 'وعيد', isTrue: false),
-      QModel(answer: 'صعيد', isTrue: false),
+      QModel(answer: Assets.difImagesAppel1, isTrue: false),
+      QModel(answer: Assets.difImagesAppel2T, isTrue: true),
+      QModel(answer: Assets.difImagesAppel3, isTrue: false),
+      QModel(answer: Assets.difImagesAppel4, isTrue: false),
     ],
     [
-      QModel(answer: Assets.difImagesB, isTrue: false),
-      QModel(answer: Assets.difImagesB, isTrue: false),
-      QModel(answer: Assets.difImagesB, isTrue: false),
-      QModel(answer: Assets.difImagesCharN, isTrue: true),
+      QModel(answer: Assets.difImagesHorse1T, isTrue: true),
+      QModel(answer: Assets.difImagesHorse2, isTrue: false),
+      QModel(answer: Assets.difImagesHorse3, isTrue: false),
+      QModel(answer: Assets.difImagesHorse4, isTrue: false),
     ],
     [
-      QModel(answer: Assets.difImagesA8, isTrue: false),
-      QModel(answer: Assets.difImagesC7, isTrue: true),
-      QModel(answer: Assets.difImagesA8, isTrue: false),
-      QModel(answer: Assets.difImagesA8, isTrue: false),
+      QModel(answer: 'كرة', isTrue: false),
+      QModel(answer: 'قرى', isTrue: true),
+      QModel(answer: 'كرة', isTrue: false),
     ],
     [
-      QModel(answer: Assets.difImagesTriangleSmall, isTrue: false),
-      QModel(answer: Assets.difImagesTriangleSmall, isTrue: false),
-      QModel(answer: Assets.difImagesParallelogram, isTrue: true),
-      QModel(answer: Assets.difImagesTriangleSmall, isTrue: false),
+      QModel(answer: 'عاد', isTrue: true),
+      QModel(answer: 'قاد', isTrue: false),
+      QModel(answer: 'قاد', isTrue: false),
     ],
     [
-      QModel(answer: Assets.difImagesDf, isTrue: false),
-      QModel(answer: Assets.difImagesDf, isTrue: false),
-      QModel(answer: Assets.difImagesWordLift, isTrue: true),
-      QModel(answer: Assets.difImagesDf, isTrue: false),
+      QModel(answer: 'تمر', isTrue: true),
+      QModel(answer: 'قمر', isTrue: false),
+      QModel(answer: 'قمر', isTrue: false),
     ],
     [
-      QModel(answer: 'اصفر', isTrue: true),
-      QModel(answer: 'ازرق', isTrue: false),
-      QModel(answer: 'اسود', isTrue: false),
-      QModel(answer: 'احمر', isTrue: true),
-    ],
-    [
-      QModel(answer: '1', isTrue: true),
-      QModel(answer: '2', isTrue: false),
-      QModel(answer: '3', isTrue: false),
-      QModel(answer: '4', isTrue: false),
-    ],
-    [
-      QModel(answer: 'قلم', isTrue: false),
-      QModel(answer: 'علم', isTrue: true),
-      QModel(answer: 'قلم', isTrue: false),
-    ],
-    [
-      QModel(answer: 'قال', isTrue: true),
-      QModel(answer: 'كال', isTrue: false),
-      QModel(answer: 'كال', isTrue: false),
-    ],
-    [
-      QModel(answer: 'صام', isTrue: false),
-      QModel(answer: 'صام', isTrue: false),
-      QModel(answer: 'قام', isTrue: true),
+      QModel(answer: 'سعيد', isTrue: false),
+      QModel(answer: 'سعيد', isTrue: false),
+      QModel(answer: 'بعيد', isTrue: true),
     ],
     [
       QModel(answer: Assets.difImagesFree, isTrue: false),
@@ -234,10 +212,10 @@ class _DifExamState extends State<DifPExam> {
       QModel(answer: Assets.difImagesBook, isTrue: true),
     ],
     [
-      QModel(answer: 'بطئ', isTrue: false),
-      QModel(answer:'اشجار', isTrue: true),
-      QModel(answer: 'ثياب', isTrue: false),
-      QModel(answer: 'كتب', isTrue: false),
+      QModel(answer: 'جديد', isTrue: false),
+      QModel(answer:'طيارة', isTrue: true),
+      QModel(answer: 'مكتبة', isTrue: false),
+      QModel(answer: 'لولو', isTrue: false),
     ],
     [
       QModel(answer: 'يسار', isTrue: false),
@@ -294,7 +272,7 @@ class _DifExamState extends State<DifPExam> {
   Widget buildDifBody({
     required String quesImage,
     required String quesTitle,
-}) {
+  }) {
     return Container(
       width: double.infinity.w,
       height: double.infinity.h,
@@ -330,11 +308,11 @@ class _DifExamState extends State<DifPExam> {
               height: 50.h,
             ),
             quesTitle != '' ? Text(
-                quesTitle,
+              quesTitle,
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold
+                  color: Colors.black,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.bold
               ),
             ) : const SizedBox.shrink(),
           ],
@@ -345,7 +323,7 @@ class _DifExamState extends State<DifPExam> {
 
   Widget buildGridBody({
     required List<QModel> answer,
-}) {
+  }) {
     return Padding(
       padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 20.h),
       child: GridView.builder(
@@ -361,29 +339,28 @@ class _DifExamState extends State<DifPExam> {
               stopAudio();
               setState(() {
                 q++;
-                if((q < 5) && answer[index].isTrue == true) the++;
-                else if((q >= 5 && q < 12) && answer[index].isTrue == true) tme++;
-                else if((q >= 12 && q < 14) && answer[index].isTrue == true) ene++;
-                else if((q >= 14 && q < 18) && answer[index].isTrue == true) ede++;
-                else if((q >= 18 && q < 19) && answer[index].isTrue == true) ege++;
-                else if((q >= 19) && answer[index].isTrue == true)ete++;
+                if((q < 4) && answer[index].isTrue == true) the++;
+                else if((q >= 4 && q < 12) && answer[index].isTrue == true) tme++;
+                else if((q >= 12 && q < 17) && answer[index].isTrue == true) ede++;
+                else if((q >= 17 && q < 18) && answer[index].isTrue == true) ege++;
+                else if((q >= 18 && q < 21) && answer[index].isTrue == true) ete++;
               });
               playAudio(audio[q]);
             }
             else{
               Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Resoult(
-                        thakera: (the * 100) ~/ th,
-                        tmyeez: (tme * 100) ~/ tm,
-                        entibah: (ene * 100) ~/ en,
-                        edrak: (ede * 100) ~/ ed,
-                        eglak: (ege * 100) ~/ eg,
-                        etijahat: (ete * 100) ~/ et,
-                      ),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Resoult(
+                    thakera: (the * 100) ~/ th,
+                    tmyeez: (tme * 100) ~/ tm,
+                    entibah: (ene * 100) ~/ en,
+                    edrak: (ede * 100) ~/ ed,
+                    eglak: (ege * 100) ~/ eg,
+                    etijahat: (ete * 100) ~/ et,
                   ),
-                  (route) => false,
+                ),
+                    (route) => false,
               );
             }
           },

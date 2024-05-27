@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smart_learning/core/my_color.dart';
 import 'package:smart_learning/core/my_widgets.dart';
+import 'package:smart_learning/core/shared_prefereces.dart';
 import 'package:smart_learning/features/difficult_learning/screens/dix_exam.dart';
+import 'package:smart_learning/features/difficult_learning/screens/up_dif_exam.dart';
 
 class DifficultLearningDocumentation extends StatelessWidget {
   DifficultLearningDocumentation({super.key});
@@ -39,8 +41,9 @@ class DifficultLearningDocumentation extends StatelessWidget {
   }
 
   Widget buildDifficultBody(context) {
-    return MyWidgets()
-        .buildLoginBody('الية تقديم الاختبار', buildDocumentation(context), 400.h, isFromNet: false);
+    return MyWidgets().buildLoginBody(
+        'الية تقديم الاختبار', buildDocumentation(context), 400.h,
+        isFromNet: false);
   }
 
   Widget buildDocumentation(context) {
@@ -53,13 +56,36 @@ class DifficultLearningDocumentation extends StatelessWidget {
             padding: EdgeInsets.all(20.0.h),
             child: InkWell(
               onTap: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DifPExam(),
-                  ),
-                      (route) => false,
-                );
+                SharedPreferenceHelper.getData(key: 'age') < 10
+                    ? Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DifPExam(),
+                        ),
+                        (route) => false,
+                      )
+                    : (SharedPreferenceHelper.getData(key: 'age') < 14 &&
+                            SharedPreferenceHelper.getData(key: 'age') >= 10)
+                        ? Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DifDExam(),
+                            ),
+                            (route) => false,
+                          )
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(
+                                'انت اكبر من العمر المسموح',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                            ),
+                          );
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -86,4 +112,3 @@ class DifficultLearningDocumentation extends StatelessWidget {
     );
   }
 }
-

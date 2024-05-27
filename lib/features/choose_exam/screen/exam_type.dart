@@ -72,7 +72,7 @@ class ExamType extends StatelessWidget {
         ),
       ),
       onTap: (){
-        if((SharedPreferenceHelper.getData(key: 'smart_exam') == true && index == 1) || (SharedPreferenceHelper.getData(key: 'dif_exam') == true && index == 0)){
+        if((SharedPreferenceHelper.getData(key: 'smart_exam') == true && index == 1) || (SharedPreferenceHelper.getData(key: 'def_ok') == true && index == 0)){
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
                 content: Text(

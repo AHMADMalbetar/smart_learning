@@ -9,6 +9,7 @@ import 'core/my_color.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
 
 import 'features/login/screens/sign_up_screen.dart';
+import 'generated/assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -70,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
             height: 200.h,
             width: 200.w,
             child: Image.asset(
-              'assets/logo_splash_screen.png',
+              Assets.assetsMainLogo,
               fit: BoxFit.cover,
             ),
           ),

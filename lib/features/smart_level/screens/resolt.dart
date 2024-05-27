@@ -103,6 +103,7 @@ class _ResoltState extends State<Resolt> {
             ),
             InkWell(
               onTap: () {
+                SharedPreferenceHelper.saveData(key: 'smart_exam', value: true);
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -133,7 +134,6 @@ class _ResoltState extends State<Resolt> {
           ],
         ),
       ),
-    ),
-    );
+    ),);
   }
 }

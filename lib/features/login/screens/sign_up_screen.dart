@@ -237,6 +237,7 @@ class SignUpScreen extends StatelessWidget {
       SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
       SharedPreferenceHelper.saveData(key: 'age', value: response.data!.user!.age);
       SharedPreferenceHelper.saveData(key: 'name', value: response.data!.user!.name);
+      SharedPreferenceHelper.saveData(key: 'smart_exam', value: response.data!.iqQuiz);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBarComp().customSnackBar(response.message!, Colors.green),
       );

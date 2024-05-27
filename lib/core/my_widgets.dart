@@ -24,11 +24,11 @@ class MyWidgets {
               height: 150.h,
               child: isFromNetWork == true
                   ? Image.network(
-                      image ?? Assets.assetsLogoSplashScreen,
+                      image ?? Assets.assetsMainLogo,
                       fit: BoxFit.cover,
                     )
                   : Image.asset(
-                      image ?? Assets.assetsLogoSplashScreen,
+                      image ?? Assets.assetsMainLogo,
                       fit: BoxFit.cover,
                     ),
             ),
@@ -115,7 +115,7 @@ class MyWidgets {
         style: TextStyle(
             fontSize: 14.0.sp,
             fontWeight: FontWeight.bold,
-            color: Colors.white),
+            color: Colors.black),
       ),
     );
   }

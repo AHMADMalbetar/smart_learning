@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String assetsLogoSplashScreen = 'assets/logo_splash_screen.png';
+  static const String assetsMainLogo = 'assets/main_logo.png';
   static const String difImagesA8 = 'assets/dif_images/a8.png';
   static const String difImagesAPPLE = 'assets/dif_images/APPLE.png';
   static const String difImagesAirplane = 'assets/dif_images/airplane.png';
