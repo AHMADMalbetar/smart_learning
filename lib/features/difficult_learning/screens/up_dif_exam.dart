@@ -283,34 +283,7 @@ class _DifExamState extends State<DifDExam> {
         padding: EdgeInsets.only(top: 20.0.h),
         child: Column(
           children: [
-            quesImage != '' ? (quesImage == Assets.difImagesStar || quesImage == Assets.difImagesCard1)
-                    ? AnimatedContainer(
-                        width: _isVisible ? 150.w : 0.w,
-                        height: _isVisible ? 150.h : 0.h,
-                        color: _isVisible ? Colors.white : Colors.transparent,
-                        duration: const Duration(seconds: 1),
-                        child: quesImage.endsWith('.png')
-                            ? Image.asset(
-                                quesImage,
-                                fit: BoxFit.contain,
-                              )
-                            : Container(
-                                width: 50.w,
-                                height: 60.h,
-                                color: Colors.white,
-                                child: Center(
-                                  child: Text(
-                                    quesImage,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 30.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                      )
-                    : SizedBox(
+            quesImage != '' ? SizedBox(
                         width: 150.w,
                         height: 150.h,
                         child: quesImage.endsWith('.png')
