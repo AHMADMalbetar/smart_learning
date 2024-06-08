@@ -16,6 +16,7 @@ class SmartLevelRepo {
         "Accept": "application/json",
       }
     );
+    print(getSmartLevelExamResponseFromJson(response.body));
     return getSmartLevelExamResponseFromJson(response.body);
   }
 

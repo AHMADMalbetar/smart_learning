@@ -165,6 +165,7 @@ class _SmartLevelExamState extends State<SmartLevelExam> {
                   trueAnswer++;
                 }
               });
+              print(trueAnswer);
             }
           },
           child: Column(
