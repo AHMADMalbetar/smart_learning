@@ -276,45 +276,15 @@ class LoginScreen extends StatelessWidget {
       );
       return;
     }
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        child: SizedBox(
-          width: 50.w, height: 50.h,
-          child: Center(
-            child: CircularProgressIndicator(
-              color: MyTheme.numColor,
-            ),
-          ),
-        ),
-      ),
-    );
-    
-    var response = await LoginRegisterRepo().login(phone: phone, password: password, age: old);
-    Navigator.pop(context);
 
-    if(response.message == 'login success'){
-      print(response.data!.token);
-      SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
-      SharedPreferenceHelper.saveData(key: 'age', value: response.data!.user!.age);
-      SharedPreferenceHelper.saveData(key: 'name', value: response.data!.user!.name);
-      SharedPreferenceHelper.saveData(key: 'smart_exam', value: response.data!.iqQuiz);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!, Colors.green),
-      );
-      Navigator.pushAndRemoveUntil(
-        context,
-        PageAnimationTransition(
-          page: ExamType(),
-          pageAnimationType: RightToLeftFadedTransition(),
-        ),
-            (route) => false,
-      );
-    }
-    else{
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!, Colors.red),
-      );
-    }
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      PageAnimationTransition(
+        page: ExamType(),
+        pageAnimationType: RightToLeftFadedTransition(),
+      ),
+          (route) => false,
+    );
   }
 }

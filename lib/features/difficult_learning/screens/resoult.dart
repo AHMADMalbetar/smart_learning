@@ -20,6 +20,13 @@ class Resoult extends StatefulWidget {
 }
 
 class _ResoultState extends State<Resoult> {
+  
+  @override
+  void initState() {
+    SharedPreferenceHelper.saveData(key: 'def_ok', value: true);
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl, child: Scaffold(
@@ -62,7 +69,7 @@ class _ResoultState extends State<Resoult> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '${SharedPreferenceHelper.getData(key: 'name')}',
+                            '${SharedPreferenceHelper.getData(key: 'userName')}',
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

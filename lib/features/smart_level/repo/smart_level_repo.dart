@@ -12,7 +12,7 @@ class SmartLevelRepo {
     final response = await http.get(
       url,
       headers: {
-        "Authorization" : "Bearer ${SharedPreferenceHelper.getData(key: 'token')}",
+        "Authorization" : "Bearer 139|745v51zNkiEqYi1hSUZhMGh9lioMvrpMCUSz0FZm72b4c6f4",
         "Accept": "application/json",
       }
     );
@@ -25,7 +25,7 @@ class SmartLevelRepo {
     final response = await http.post(
       url,
       headers: {
-        "Authorization" : "Bearer ${SharedPreferenceHelper.getData(key: 'token')}",
+        "Authorization" : "Bearer 139|745v51zNkiEqYi1hSUZhMGh9lioMvrpMCUSz0FZm72b4c6f4",
         "Accept": "application/json",
       }
     );

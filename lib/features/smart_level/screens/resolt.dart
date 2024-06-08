@@ -15,6 +15,13 @@ class Resolt extends StatefulWidget {
 }
 
 class _ResoltState extends State<Resolt> {
+  
+  @override
+  void initState() {
+    SharedPreferenceHelper.saveData(key: 'smart_exam', value: true);
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl, child: Scaffold(

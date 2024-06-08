@@ -8,8 +8,13 @@ import '../../difficult_learning/screens/difficult_learning_documentation.dart';
 import '../../smart_level/screens/smart_level_documentation.dart';
 
 
-class ExamType extends StatelessWidget {
+class ExamType extends StatefulWidget {
 
+  @override
+  State<ExamType> createState() => _ExamTypeState();
+}
+
+class _ExamTypeState extends State<ExamType> {
   List<String> title = [
     'صعوبات التعلم',
     'مستوى الذكاء',
@@ -21,11 +26,17 @@ class ExamType extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    print(SharedPreferenceHelper.getData(key: 'token'));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: MyWidgets().buildLoginBody('اختر نوع الاختبار', buildExamType(), 350.h, isFromNet: false),
+        body: MyWidgets().buildLoginBody('اختر نوع الاختبار', buildExamType(context), 350.h, isFromNet: false),
         endDrawer: Drawer(
           child: drawerBody(),
         ),
@@ -37,77 +48,128 @@ class ExamType extends StatelessWidget {
     );
   }
 
-  Widget buildExamType(){
+  Widget buildExamType(context){
     return Padding(
       padding: EdgeInsets.only(top: 100.0.h, left: 30.w, right: 30.w),
-      child: ListView.separated(
-        shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) => buildExamTypeBottonTranslate(title[index], context, screens[index], index),
-          separatorBuilder: (context, index) => SizedBox(
-            height: 30.h,
-          ),
-          itemCount: screens.length,
-      ),
-    );
-  }
-
-  Widget buildExamTypeBottonTranslate(String examTitle, context, Widget screen, index){
-    return InkWell(
-      child: Container(
-        decoration: BoxDecoration(
-          color: MyTheme.mainBackGroundColor,
-          borderRadius: BorderRadius.circular(5.r),
-        ),
-        height: 40.h,
-        child: Center(
-          child: Text(
-            examTitle,
-            style: TextStyle(
-              color: MyTheme.mainTextColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 14.sp,
-            ),
-          ),
-        ),
-      ),
-      onTap: (){
-        if((SharedPreferenceHelper.getData(key: 'smart_exam') == true && index == 1) || (SharedPreferenceHelper.getData(key: 'def_ok') == true && index == 0)){
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text(
-                  'لقد قمت بهذا الاختبار من قبل',
+      child: Column(
+        children: [
+          InkWell(
+            child: Container(
+              decoration: BoxDecoration(
+                color: MyTheme.mainBackGroundColor,
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+              height: 40.h,
+              child: Center(
+                child: Text(
+                  'صعوبات التعلم',
+                  style: TextStyle(
+                    color: MyTheme.mainTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.sp,
+                  ),
                 ),
-              backgroundColor: Colors.red,
+              ),
             ),
-          );
-          return;
-        }
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => screen,
+            onTap: (){
+              if((SharedPreferenceHelper.getData(key: 'def_ok') == true)){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'لقد قمت بهذا الاختبار من قبل',
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+                return;
+              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DifficultLearningDocumentation(),
+                ),
+              );
+              // if((SharedPreferenceHelper.getData(key: 'age') <= 14 && index == 0) || (index == 1)){
+              //
+              // }
+              // else{
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     SnackBar(
+              //       backgroundColor: Colors.red,
+              //         content: Text(
+              //           'هذا الاختبار مخصص للاطفال ما دون 14 سنة',
+              //           style: TextStyle(
+              //             color: Colors.white,
+              //             fontSize: 18.sp,
+              //             fontWeight: FontWeight.bold
+              //           ),
+              //         ),
+              //     ),
+              //   );
+              // }
+            },
           ),
-        );
-        // if((SharedPreferenceHelper.getData(key: 'age') <= 14 && index == 0) || (index == 1)){
-        //
-        // }
-        // else{
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(
-        //       backgroundColor: Colors.red,
-        //         content: Text(
-        //           'هذا الاختبار مخصص للاطفال ما دون 14 سنة',
-        //           style: TextStyle(
-        //             color: Colors.white,
-        //             fontSize: 18.sp,
-        //             fontWeight: FontWeight.bold
-        //           ),
-        //         ),
-        //     ),
-        //   );
-        // }
-      },
+          SizedBox(
+            height: 20.h,
+          ),
+          InkWell(
+            child: Container(
+              decoration: BoxDecoration(
+                color: MyTheme.mainBackGroundColor,
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+              height: 40.h,
+              child: Center(
+                child: Text(
+                  'مستوى الذكاء',
+                  style: TextStyle(
+                    color: MyTheme.mainTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ),
+            ),
+            onTap: (){
+              if(SharedPreferenceHelper.getData(key: 'smart_exam') == true){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'لقد قمت بهذا الاختبار من قبل',
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+                return;
+              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SmartLevelDocumentation(),
+                ),
+              );
+              // if((SharedPreferenceHelper.getData(key: 'age') <= 14 && index == 0) || (index == 1)){
+              //
+              // }
+              // else{
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     SnackBar(
+              //       backgroundColor: Colors.red,
+              //         content: Text(
+              //           'هذا الاختبار مخصص للاطفال ما دون 14 سنة',
+              //           style: TextStyle(
+              //             color: Colors.white,
+              //             fontSize: 18.sp,
+              //             fontWeight: FontWeight.bold
+              //           ),
+              //         ),
+              //     ),
+              //   );
+              // }
+            },
+          )
+        ],
+      )
     );
   }
 
@@ -127,5 +189,4 @@ class ExamType extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -231,29 +231,15 @@ class SignUpScreen extends StatelessWidget {
       return;
     }
 
-    var response = await LoginRegisterRepo().register(phone: phone, password: password, age: old, name: name);
+    SharedPreferenceHelper.saveData(key: 'userName', value: nameController.text);
 
-    if(response.data!.token != null){
-      SharedPreferenceHelper.saveData(key: 'token', value: response.data!.token);
-      SharedPreferenceHelper.saveData(key: 'age', value: response.data!.user!.age);
-      SharedPreferenceHelper.saveData(key: 'name', value: response.data!.user!.name);
-      SharedPreferenceHelper.saveData(key: 'smart_exam', value: response.data!.iqQuiz);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!, Colors.green),
-      );
-      Navigator.pushAndRemoveUntil(
-        context,
-        PageAnimationTransition(
-          page: ExamType(),
-          pageAnimationType: RightToLeftFadedTransition(),
-        ),
-            (route) => false,
-      );
-    }
-    else{
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBarComp().customSnackBar(response.message!, Colors.red),
-      );
-    }
+    Navigator.pushAndRemoveUntil(
+      context,
+      PageAnimationTransition(
+        page: ExamType(),
+        pageAnimationType: RightToLeftFadedTransition(),
+      ),
+          (route) => false,
+    );
   }
 }
