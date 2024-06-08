@@ -57,146 +57,148 @@ class SignUpScreen extends StatelessWidget {
   Widget buildLogin(context) {
     return Padding(
       padding: EdgeInsets.all(20.0.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'الاسم: ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: nameController,
-            save: false,
-            Label: 'اسمي',
-            focusNode: focusNode,
-          ),
-          SizedBox(
-            height: 12.h,
-          ),
-          Text(
-            'العمر: ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: oldController,
-            save: false,
-            Label: 'عمري',
-            focusNode: focusNode1,
-
-          ),
-          SizedBox(
-            height: 12.h,
-          ),
-          Text(
-            'رقم الهاتف: ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: phoneController,
-            save: false,
-            Label: 'رقم الهاتف',
-            writeType: TextInputType.phone,
-            focusNode: focusNode2,
-
-          ),
-          SizedBox(
-            height: 12.h,
-          ),
-          Text(
-            'كلمة السر: ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          defTextFormField(
-            Controller: passwordController,
-            save: false,
-            Label: 'كلمة السر',
-            focusNode: focusNode3,
-
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'لديك حساب: ',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold
-                ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'الاسم: ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
               ),
-              TextButton(
-                  onPressed: (){
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                            (route) => false,
-                    );
-                  },
-                  child: Text(
-                    'تسجيل الدخول',
-                    style: TextStyle(
-                      color: MyTheme.numColor,
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            defTextFormField(
+              Controller: nameController,
+              save: false,
+              Label: 'اسمي',
+              focusNode: focusNode,
+            ),
+            SizedBox(
+              height: 12.h,
+            ),
+            Text(
+              'العمر: ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            defTextFormField(
+              Controller: oldController,
+              save: false,
+              Label: 'عمري',
+              focusNode: focusNode1,
+        
+            ),
+            SizedBox(
+              height: 12.h,
+            ),
+            Text(
+              'رقم الهاتف: ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            defTextFormField(
+              Controller: phoneController,
+              save: false,
+              Label: 'رقم الهاتف',
+              writeType: TextInputType.phone,
+              focusNode: focusNode2,
+        
+            ),
+            SizedBox(
+              height: 12.h,
+            ),
+            Text(
+              'كلمة السر: ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            defTextFormField(
+              Controller: passwordController,
+              save: false,
+              Label: 'كلمة السر',
+              focusNode: focusNode3,
+        
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'لديك حساب: ',
+                  style: TextStyle(
+                      color: Colors.white,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.bold
-                    ),
                   ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          InkWell(
-            onTap: () => onPressSignUp(context),
-            child: Container(
-              height: 40.h,
-              decoration: BoxDecoration(
-                color: MyTheme.numColor,
-                borderRadius: BorderRadius.circular(15.r),
-              ),
-              child: Center(
-                child: Text(
-                  'انشاء الحساب',
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                ),
+                TextButton(
+                    onPressed: (){
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                              (route) => false,
+                      );
+                    },
+                    child: Text(
+                      'تسجيل الدخول',
+                      style: TextStyle(
+                        color: MyTheme.numColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            InkWell(
+              onTap: () => onPressSignUp(context),
+              child: Container(
+                height: 40.h,
+                decoration: BoxDecoration(
+                  color: MyTheme.numColor,
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                child: Center(
+                  child: Text(
+                    'انشاء الحساب',
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -232,6 +234,7 @@ class SignUpScreen extends StatelessWidget {
     }
 
     SharedPreferenceHelper.saveData(key: 'userName', value: nameController.text);
+    SharedPreferenceHelper.saveData(key: 'age', value: int.parse(old));
 
     Navigator.pushAndRemoveUntil(
       context,

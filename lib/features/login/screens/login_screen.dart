@@ -60,197 +60,199 @@ class LoginScreen extends StatelessWidget {
   Widget buildLogin(context) {
     return Padding(
       padding: EdgeInsets.all(20.0.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'رقم الهاتف: ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          SizedBox(
-            height: 40.h,
-            child: TextFormField(
-              focusNode: focusNode,
-              controller: phoneController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                  borderSide: BorderSide(
-                    color: MyTheme.numColor,
-                  ),
-                ),
-                focusColor: MyTheme.numColor,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: MyTheme.numColor,
-                  ),
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                labelText: 'رقم الهاتف',
-                labelStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-              style: const TextStyle(
-                color: Colors.white
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'رقم الهاتف: ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
               ),
             ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            'العمر : ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
+            SizedBox(
+              height: 5.h,
             ),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          SizedBox(
-            height: 40.h,
-            child: TextFormField(
-              style: const TextStyle(
-                  color: Colors.white
-              ),
-              focusNode: focusNode1,
-              controller: oldController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                  borderSide: BorderSide(
-                    color: MyTheme.numColor,
-                  ),
-                ),
-                focusColor: MyTheme.numColor,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: MyTheme.numColor,
-                  ),
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                labelText: 'العمر',
-                labelStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            'كلمة السر: ',
-            style: TextStyle(
-              color: MyTheme.subTitleColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          SizedBox(
-            height: 40.h,
-            child: TextFormField(
-              style: const TextStyle(
-                  color: Colors.white
-              ),
-              focusNode: focusNode2,
-              controller: passwordController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.r),
-                  borderSide: BorderSide(
-                    color: MyTheme.numColor,
-                  ),
-                ),
-                focusColor: MyTheme.numColor,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: MyTheme.numColor,
-                  ),
-                  borderRadius: BorderRadius.circular(15.r),
-                ),
-                prefixIcon: const Icon(
-                  Icons.lock_outline,
-                ),
-                labelText: 'كلمة السر',
-                labelStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'لديك حساب: ',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              TextButton(
-                onPressed: (){
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignUpScreen(),
-                    ),
-                        (route) => false,
-                  );
-                },
-                child: Text(
-                  'انشئ حساب',
-                  style: TextStyle(
+            SizedBox(
+              height: 40.h,
+              child: TextFormField(
+                focusNode: focusNode,
+                controller: phoneController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.r),
+                    borderSide: BorderSide(
                       color: MyTheme.numColor,
+                    ),
+                  ),
+                  focusColor: MyTheme.numColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: MyTheme.numColor,
+                    ),
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                  labelText: 'رقم الهاتف',
+                  labelStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+                style: const TextStyle(
+                  color: Colors.white
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              'العمر : ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            SizedBox(
+              height: 40.h,
+              child: TextFormField(
+                style: const TextStyle(
+                    color: Colors.white
+                ),
+                focusNode: focusNode1,
+                controller: oldController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.r),
+                    borderSide: BorderSide(
+                      color: MyTheme.numColor,
+                    ),
+                  ),
+                  focusColor: MyTheme.numColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: MyTheme.numColor,
+                    ),
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                  labelText: 'العمر',
+                  labelStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              'كلمة السر: ',
+              style: TextStyle(
+                color: MyTheme.subTitleColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            SizedBox(
+              height: 40.h,
+              child: TextFormField(
+                style: const TextStyle(
+                    color: Colors.white
+                ),
+                focusNode: focusNode2,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.r),
+                    borderSide: BorderSide(
+                      color: MyTheme.numColor,
+                    ),
+                  ),
+                  focusColor: MyTheme.numColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: MyTheme.numColor,
+                    ),
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                  prefixIcon: const Icon(
+                    Icons.lock_outline,
+                  ),
+                  labelText: 'كلمة السر',
+                  labelStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'لديك حساب: ',
+                  style: TextStyle(
+                      color: Colors.white,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.bold
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          InkWell(
-            onTap: () => onPressedLogin(context),
-            child: Container(
-              height: 40.h,
-              decoration: BoxDecoration(
-                color: MyTheme.numColor,
-                borderRadius: BorderRadius.circular(15.r),
-              ),
-              child: Center(
-                child: Text(
-                  'تسجيل الدخول',
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                TextButton(
+                  onPressed: (){
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUpScreen(),
+                      ),
+                          (route) => false,
+                    );
+                  },
+                  child: Text(
+                    'انشئ حساب',
+                    style: TextStyle(
+                        color: MyTheme.numColor,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            InkWell(
+              onTap: () => onPressedLogin(context),
+              child: Container(
+                height: 40.h,
+                decoration: BoxDecoration(
+                  color: MyTheme.numColor,
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                child: Center(
+                  child: Text(
+                    'تسجيل الدخول',
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -276,6 +278,7 @@ class LoginScreen extends StatelessWidget {
       );
       return;
     }
+    SharedPreferenceHelper.saveData(key: 'age', value: int.parse(old));
 
 
     Navigator.pushAndRemoveUntil(

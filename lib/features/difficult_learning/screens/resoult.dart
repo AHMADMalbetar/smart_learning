@@ -142,7 +142,6 @@ class _ResoultState extends State<Resoult> {
                   ),
                       (route) => false,
                 );
-                SharedPreferenceHelper.saveData(key: 'def_ok', value: true);
               },
               child: Container(
                 decoration: BoxDecoration(

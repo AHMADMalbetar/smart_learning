@@ -16,6 +16,8 @@ class DifDExam extends StatefulWidget {
 
 class _DifExamState extends State<DifDExam> {
 
+  bool _isVisible = true;
+
   int th = 4;
   int the = 0;
   int tm = 8;
@@ -34,6 +36,7 @@ class _DifExamState extends State<DifDExam> {
   void playAudio(audio) async {
     await _audioPlayer.play(AssetSource(audio));
   }
+
   void stopAudio() async {
     await _audioPlayer.stop();
   }
@@ -51,6 +54,7 @@ class _DifExamState extends State<DifDExam> {
   }
 
   int q = 0;
+
 
   List<String> audio = [
     'audio/up/doar.aac',
@@ -136,7 +140,7 @@ class _DifExamState extends State<DifDExam> {
       QModel(answer: '12', isTrue: false),
       QModel(answer: '20', isTrue: false),
       QModel(answer: '17', isTrue: true),
-      QModel(answer: '15', isTrue: false ),
+      QModel(answer: '15', isTrue: false),
     ],
     [
       QModel(answer: Assets.difImagesCloud, isTrue: false),
@@ -151,13 +155,16 @@ class _DifExamState extends State<DifDExam> {
     [
       QModel(answer: 'صح', isTrue: false),
       QModel(answer: 'خطأ', isTrue: true),
-    ],[
+    ],
+    [
       QModel(answer: 'صح', isTrue: false),
       QModel(answer: 'خطأ', isTrue: true),
-    ],[
+    ],
+    [
       QModel(answer: 'صح', isTrue: true),
       QModel(answer: 'خطأ', isTrue: false),
-    ],[
+    ],
+    [
       QModel(answer: 'صح', isTrue: false),
       QModel(answer: 'خطأ', isTrue: true),
     ],
@@ -209,7 +216,7 @@ class _DifExamState extends State<DifDExam> {
     ],
     [
       QModel(answer: 'جديد', isTrue: false),
-      QModel(answer:'طيارة', isTrue: true),
+      QModel(answer: 'طيارة', isTrue: true),
       QModel(answer: 'مكتبة', isTrue: false),
       QModel(answer: 'لولو', isTrue: false),
     ],
@@ -228,7 +235,6 @@ class _DifExamState extends State<DifDExam> {
       QModel(answer: 'تحت', isTrue: false),
     ],
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -277,40 +283,72 @@ class _DifExamState extends State<DifDExam> {
         padding: EdgeInsets.only(top: 20.0.h),
         child: Column(
           children: [
-            quesImage != '' ? SizedBox(
-              width: 150.w,
-              height: 150.h,
-              child: quesImage.endsWith('.png') ? Image.asset(
-                quesImage,
-                fit: BoxFit.contain,
-              ) : Container(
-                width: 50.w, height: 60.h,
-                color: Colors.white,
-                child: Center(
-                  child: Text(
-                    quesImage,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+            quesImage != '' ? (quesImage == Assets.difImagesStar || quesImage == Assets.difImagesCard1)
+                    ? AnimatedContainer(
+                        width: _isVisible ? 150.w : 0.w,
+                        height: _isVisible ? 150.h : 0.h,
+                        color: _isVisible ? Colors.white : Colors.transparent,
+                        duration: const Duration(seconds: 1),
+                        child: quesImage.endsWith('.png')
+                            ? Image.asset(
+                                quesImage,
+                                fit: BoxFit.contain,
+                              )
+                            : Container(
+                                width: 50.w,
+                                height: 60.h,
+                                color: Colors.white,
+                                child: Center(
+                                  child: Text(
+                                    quesImage,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 30.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                      )
+                    : SizedBox(
+                        width: 150.w,
+                        height: 150.h,
+                        child: quesImage.endsWith('.png')
+                            ? Image.asset(
+                                quesImage,
+                                fit: BoxFit.contain,
+                              )
+                            : Container(
+                                width: 50.w,
+                                height: 60.h,
+                                color: Colors.white,
+                                child: Center(
+                                  child: Text(
+                                    quesImage,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 30.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                      )
+                : SizedBox(
+                    height: 100.h,
                   ),
-                ),
-              ),
-            ) : SizedBox(
-              height: 100.h,
-            ),
             SizedBox(
               height: 50.h,
             ),
-            quesTitle != '' ? Text(
-              quesTitle,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold
-              ),
-            ) : const SizedBox.shrink(),
+            quesTitle != ''
+                ? Text(
+                    quesTitle,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold),
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
       ),
@@ -331,19 +369,28 @@ class _DifExamState extends State<DifDExam> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            if(q < answers.length - 1){
+            if (q < answers.length - 1) {
               stopAudio();
               setState(() {
                 q++;
-                if((q < 4) && answer[index].isTrue == true) the++;
-                else if((q >= 4 && q < 12) && answer[index].isTrue == true) tme++;
-                else if((q >= 12 && q < 17) && answer[index].isTrue == true) ede++;
-                else if((q >= 17 && q < 18) && answer[index].isTrue == true) ege++;
-                else if((q >= 18 && q < 21) && answer[index].isTrue == true) ete++;
+                if(q == 2 || q == 3) {
+                  setState(() {
+                  _isVisible = false;
+                });
+                }
+                if ((q < 4) && answer[index].isTrue == true)
+                  the++;
+                else if ((q >= 4 && q < 12) && answer[index].isTrue == true)
+                  tme++;
+                else if ((q >= 12 && q < 17) && answer[index].isTrue == true)
+                  ede++;
+                else if ((q >= 17 && q < 18) && answer[index].isTrue == true)
+                  ege++;
+                else if ((q >= 18 && q < 21) && answer[index].isTrue == true)
+                  ete++;
               });
               playAudio(audio[q]);
-            }
-            else{
+            } else {
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
@@ -356,7 +403,7 @@ class _DifExamState extends State<DifDExam> {
                     etijahat: (ete * 100) ~/ et,
                   ),
                 ),
-                    (route) => false,
+                (route) => false,
               );
             }
           },
@@ -364,23 +411,26 @@ class _DifExamState extends State<DifDExam> {
             color: Colors.white,
             width: 130.w,
             height: 70.h,
-            child: answer[index].answer.endsWith('.png') ? Image.asset(
-              answer[index].answer,
-              fit: BoxFit.cover,
-            ) : Container(
-              width: 50.w, height: 60.h,
-              color: Colors.white,
-              child: Center(
-                child: Text(
-                  answer[index].answer,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25.sp,
-                    fontWeight: FontWeight.bold,
+            child: answer[index].answer.endsWith('.png')
+                ? Image.asset(
+                    answer[index].answer,
+                    fit: BoxFit.cover,
+                  )
+                : Container(
+                    width: 50.w,
+                    height: 60.h,
+                    color: Colors.white,
+                    child: Center(
+                      child: Text(
+                        answer[index].answer,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
           ),
         ),
         itemCount: answer.length,
